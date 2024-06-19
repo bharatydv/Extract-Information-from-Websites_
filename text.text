@@ -1,0 +1,54 @@
+Approach
+Getting Website Content:
+
+Using Requests and BeautifulSoup: We used the requests library to download the HTML content of the web pages.
+Parsing HTML: We used BeautifulSoup to read and extract information from the HTML content, like the page title and description.
+Finding Social Media Links:
+
+Checking Links: We looked at all the links on the page and checked if they lead to popular social media sites.
+Pattern Matching: If a link contained keywords like "facebook.com", "twitter.com", "instagram.com", or "linkedin.com", we saved it as a social media link.
+Detecting Technology and Category:
+
+Patterns and Regex: We used regular expressions (regex) to find patterns in the HTML and scripts that indicate the use of certain technologies (like WordPress or React).
+Finding the Category: We looked at meta tags and the page content to determine the website’s category, such as E-commerce or Blog.
+Handling Dynamic Content with Selenium:
+
+Setting up Selenium: We used Selenium with a headless Chrome browser to load websites and get content that appears after JavaScript runs.
+Language Detection: We got the language of the website (e.g., English, Spanish).
+Getting Scripts: We extracted all the HTML, including dynamic content, for further analysis.
+Saving Data in MySQL:
+
+Connecting to Database: We connected to a MySQL database to save the extracted data.
+Saving as JSON: We saved social media links as JSON strings to keep the data organized.
+Retrieving Data:
+
+Database Query: We retrieved data from the database to verify and display it.
+Code Structure
+extract_meta_info(soup): Gets the page title and description.
+extract_social_media_links(soup): Finds and saves social media links.
+extract_tech_stack_and_category(soup, scripts): Identifies the technologies used and the category of the website.
+extract_with_selenium(url): Uses Selenium to handle dynamic content and get extra information.
+save_to_mysql(data): Saves the data into the MySQL database.
+main(websites): Main function to process a list of websites.
+fetch_data(): Retrieves and shows data from the database.
+Challenges and Solutions
+Handling Dynamic Content:
+
+Problem: Some websites use JavaScript to load content, which requests and BeautifulSoup can’t handle.
+Solution: We used Selenium with a headless Chrome browser to get this dynamic content.
+Complex Regex Patterns:
+
+Problem: Finding technology and category accurately with regex can be hard due to different ways websites are built.
+Solution: We created detailed regex patterns for common technologies and used fallback methods to check content for categories.
+Timeouts and Load Times:
+
+Problem: Websites with slow load times can cause delays or failures in data extraction.
+Solution: We set proper timeout values and handled errors to ensure the extraction process runs smoothly.
+Storing Complex Data:
+
+Problem: Storing structured data like JSON in a relational database can be tricky.
+Solution: We used JSON format to store complex fields like social media links, making data retrieval easy.
+Results
+The script successfully extracted and stored information from various websites. This data includes meta titles, descriptions, social media links, technologies used, website language, and categories, providing a complete overview of each site.
+
+By using Selenium for dynamic content and regex for detecting patterns, we ensured accurate data extraction. Storing the data in MySQL allows for easy retrieval and verification.
